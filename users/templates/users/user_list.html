@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>List of Users</title>
+    <style>
+        /* General styles for the body */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+        }
+
+        /* Styling the main heading */
+        h1 {
+            text-align: center;
+            color: #333;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Styling the table */
+        table {
+            width: 80%;
+            margin: 0 auto;
+            border-collapse: collapse;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Styling the table headers */
+        th {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 15px;
+            text-align: left;
+            text-transform: uppercase;
+            font-size: 1.1rem;
+        }
+
+        /* Styling the table cells */
+        td {
+            padding: 12px 15px;
+            text-align: left;
+            font-size: 1rem;
+            color: #333;
+        }
+
+        /* Add alternating row colors */
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        /* Hover effect for rows */
+        tr:hover {
+            background-color: #ddd;
+            cursor: pointer;
+        }
+
+        /* Styling the Staff Status for clarity */
+        .staff-status {
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        /* Different colors for staff and non-staff */
+        .staff-status.staff-member {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .staff-status.non-staff {
+            background-color: #FF6347;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>List of Users</h1>
+    <table>
+        <tr>
+            <th>User Name</th>
+            <th>Email-id</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Staff Status</th>
+        </tr>
+        {% for user in users %}
+        <tr>
+            <td>{{ user.username }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.first_name }}</td>
+            <td>{{ user.last_name }}</td>
+            <td>
+                <span class="staff-status {% if user.is_staff %}staff-member{% else %}non-staff{% endif %}">
+                    {% if user.is_staff %} Staff Member {% else %} Non-Staff Member {% endif %}
+                </span>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
